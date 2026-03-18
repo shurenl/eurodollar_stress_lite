@@ -1,0 +1,352 @@
+# ESI-Lite configuration
+# Dashboard / HTML / PDF are generated locally from this config.
+
+fred:
+  api_key: ${FRED_API_KEY}
+  base_url: "https://api.stlouisfed.org/fred"
+  public_csv_url: "https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}"
+  timeout: 30
+  retry_attempts: 3
+  retry_delay: 2
+  series:
+    sofr: "SOFR"
+    obfr: "OBFR"
+    sofrvol: "SOFRVOL"
+    sofr30: "SOFR30DAYAVG"
+    sofr180: "SOFR180DAYAVG"
+  frequency:
+    sofr: "daily"
+    obfr: "daily"
+    sofrvol: "daily"
+    sofr30: "daily"
+    sofr180: "daily"
+
+nyfed:
+  base_url: "https://markets.newyorkfed.org/api"
+  timeout: 30
+  retry_attempts: 3
+  retry_delay: 2
+  series:
+    effective_fed_funds: "rates/unsecured/effr/search.json"
+
+bis:
+  mode: "auto"
+  csv_path: "data/bis_usd_credit.csv"
+  base_url: "https://stats.bis.org/api/v1"
+  timeout: 45
+  retry_attempts: 3
+  retry_delay: 3
+  freshness:
+    enabled: true
+    max_age_days: 210
+  series:
+    usd_credit_yoy:
+      dataset: "BIS,WS_GLI,1.0"
+      series_code: "Q.USD.3P.N.A.I.B.USD"
+      period_column: "TIME_PERIOD"
+      value_column: "OBS_VALUE"
+      frequency: "quarterly"
+  frequency:
+    usd_credit_yoy: "quarterly"
+
+indicators:
+  start_date: "2018-01-01"
+  rolling_window:
+    volatility: 20
+    change_5d: 5
+    change_20d: 20
+    zscore: 252
+  definitions:
+    sofr:
+      name: "SOFR"
+      description: "Secured Overnight Financing Rate"
+      weight: 0.14
+      direction: "positive"
+      source: "fred"
+      series_id: "sofr"
+      frequency: "daily"
+
+    obfr:
+      name: "OBFR"
+      description: "Overnight Bank Funding Rate"
+      weight: 0.14
+      direction: "positive"
+      source: "fred"
+      series_id: "obfr"
+      frequency: "daily"
+
+    sofr_obfr_spread:
+      name: "SOFR-OBFR Spread"
+      description: "Spread between SOFR and OBFR"
+      weight: 0.16
+      direction: "positive"
+      source: "calculated"
+      depends_on: ["sofr", "obfr"]
+      frequency: "daily"
+
+    sofr_volatility_20d:
+      name: "SOFR 20D Volatility"
+      description: "20-day rolling volatility of SOFR"
+      weight: 0.14
+      direction: "positive"
+      source: "calculated"
+      depends_on: ["sofr"]
+      frequency: "daily"
+
+    sofr_change_5d:
+      name: "SOFR 5D Change"
+      description: "5-day change in SOFR"
+      weight: 0.08
+      direction: "positive"
+      source: "calculated"
+      depends_on: ["sofr"]
+      frequency: "daily"
+
+    obfr_change_5d:
+      name: "OBFR 5D Change"
+      description: "5-day change in OBFR"
+      weight: 0.08
+      direction: "positive"
+      source: "calculated"
+      depends_on: ["obfr"]
+      frequency: "daily"
+
+    sofrvol:
+      name: "SOFR Volume"
+      description: "SOFR trading volume"
+      weight: 0.10
+      direction: "inverse"
+      source: "fred"
+      series_id: "sofrvol"
+      frequency: "daily"
+
+    sofr30:
+      name: "30-Day Average SOFR"
+      description: "30-day average SOFR"
+      weight: 0.0
+      direction: "positive"
+      source: "fred"
+      series_id: "sofr30"
+      frequency: "daily"
+
+    sofr180:
+      name: "180-Day Average SOFR"
+      description: "180-day average SOFR"
+      weight: 0.0
+      direction: "positive"
+      source: "fred"
+      series_id: "sofr180"
+      frequency: "daily"
+
+    sofr30_minus_sofr:
+      name: "30D Avg SOFR - SOFR"
+      description: "Spread between 30-day average SOFR and current SOFR"
+      weight: 0.08
+      direction: "positive"
+      source: "calculated"
+      depends_on: ["sofr30", "sofr"]
+      frequency: "daily"
+
+    bis_usd_credit_yoy:
+      name: "BIS USD Credit YoY"
+      description: "US dollar credit to non-bank borrowers outside the US, YoY"
+      weight: 0.08
+      direction: "inverse"
+      source: "bis"
+      series_id: "usd_credit_yoy"
+      transform: "yoy"
+      transform_periods: 4
+      frequency: "quarterly"
+      low_frequency: true
+
+premium_indicators:
+  enabled: false
+  data_dir: "data/premium"
+  definitions:
+    fra_ois:
+      name: "FRA-OIS Spread"
+      description: "Forward Rate Agreement vs OIS"
+      weight: 0.15
+      direction: "positive"
+      source: "premium"
+    cp_ois:
+      name: "CP-OIS Spread"
+      description: "Commercial Paper vs OIS"
+      weight: 0.10
+      direction: "positive"
+      source: "premium"
+    eur_usd_basis:
+      name: "EUR/USD Basis"
+      description: "EUR/USD cross-currency basis"
+      weight: 0.10
+      direction: "positive"
+      source: "premium"
+    usd_jpy_basis:
+      name: "USD/JPY Basis"
+      description: "USD/JPY cross-currency basis"
+      weight: 0.10
+      direction: "positive"
+      source: "premium"
+    on_rrp:
+      name: "ON RRP"
+      description: "Overnight reverse repo usage"
+      weight: 0.08
+      direction: "positive"
+      source: "premium"
+    srf:
+      name: "SRF"
+      description: "Standing Repo Facility usage"
+      weight: 0.08
+      direction: "positive"
+      source: "premium"
+  bloomberg:
+    enabled: false
+  refinitiv:
+    enabled: false
+  wind:
+    enabled: false
+  csv:
+    enabled: false
+
+stress_index:
+  name: "ESI-Lite"
+  full_name: "Eurodollar Stress Index Lite"
+  version: "1.0.1"
+  standardization:
+    zscore_clip_min: -3.0
+    zscore_clip_max: 3.0
+    min_observations: 60
+  formula:
+    base_score: 50
+    multiplier: 15
+    min_score: 0
+    max_score: 100
+  regimes:
+    loose:
+      min: 0
+      max: 30
+      label: "Loose"
+      color: "#2ecc71"
+      description: "Loose liquidity conditions."
+    easy:
+      min: 30
+      max: 45
+      label: "Easy"
+      color: "#27ae60"
+      description: "Funding conditions remain supportive."
+    neutral:
+      min: 45
+      max: 60
+      label: "Neutral"
+      color: "#f39c12"
+      description: "Funding conditions are broadly balanced."
+    tight:
+      min: 60
+      max: 75
+      label: "Tight"
+      color: "#e67e22"
+      description: "Funding conditions are tightening."
+    stress:
+      min: 75
+      max: 100
+      label: "Stress"
+      color: "#e74c3c"
+      description: "Funding conditions are under visible stress."
+
+historical_events:
+  - date: "2019-09-17"
+    name: "Repo Spike"
+    description: "September 2019 repo funding spike."
+    expected_regime: "stress"
+  - date: "2020-03-16"
+    name: "COVID Funding Stress"
+    description: "March 2020 global dollar funding dislocation."
+    expected_regime: "stress"
+  - date: "2023-03-10"
+    name: "Regional Bank Stress"
+    description: "US regional banking stress."
+    expected_regime: "stress"
+
+output:
+  directories:
+    dashboard_data: "dashboard_data"
+    outputs: "outputs"
+    plots: "outputs/plots"
+    data: "data"
+  files:
+    latest_snapshot: "dashboard_data/latest_snapshot.json"
+    history: "dashboard_data/history.json"
+    indicator_status: "dashboard_data/indicator_status.json"
+    metadata: "outputs/metadata.json"
+    pdf_report: "outputs/daily_summary.pdf"
+    email_html: "outputs/email_summary.html"
+  plots:
+    dpi: 150
+    figsize_width: 12
+    figsize_height: 6
+    style: "default"
+    save_format: "png"
+  retention:
+    keep_history_days: 730
+
+pdf:
+  page_size: "A4"
+  orientation: "portrait"
+  font:
+    family: "Helvetica"
+    title_size: 18
+    heading_size: 14
+    body_size: 10
+  margins:
+    top: 20
+    bottom: 20
+    left: 15
+    right: 15
+  sections:
+    - title_page
+    - overview
+    - contributions
+    - indicators
+    - data_quality
+
+email:
+  smtp:
+    host: ${SMTP_HOST}
+    port: ${SMTP_PORT}
+    user: ${SMTP_USER}
+    password: ${SMTP_PASSWORD}
+    use_tls: true
+    timeout: 30
+  addresses:
+    from: ${MAIL_FROM}
+    to: ${MAIL_TO}
+  subject_template: "[ESI-Lite] {date} | Score: {score:.1f} | Regime: {regime}"
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  handlers:
+    file:
+      enabled: false
+      filename: "esi_lite.log"
+
+sanity_checks:
+  checks:
+    empty_columns:
+      enabled: true
+      threshold: 0.9
+    consecutive_missing:
+      enabled: true
+      threshold: 10
+    zscore_infinity:
+      enabled: true
+    weight_normalization:
+      enabled: true
+      tolerance: 0.001
+    index_range:
+      enabled: true
+      min: 0
+      max: 100
+    low_frequency_forward_fill:
+      enabled: true
+      max_fill_days: 95

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESI-Lite Daily Summary</title>
+    <style>
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        .score-section {
+            padding: 30px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        .score-value {
+            font-size: 64px;
+            font-weight: 700;
+            margin: 0;
+        }
+        .score-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .regime-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 15px;
+            color: white;
+        }
+        .section {
+            padding: 20px 30px;
+            border-bottom: 1px solid #eee;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .changes-grid {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+        .change-item {
+            flex: 1;
+        }
+        .change-value {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .change-value.up {
+            color: #e74c3c;
+        }
+        .change-value.down {
+            color: #27ae60;
+        }
+        .change-value.neutral {
+            color: #7f8c8d;
+        }
+        .change-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .contributor-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .contributor-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .contributor-item:last-child {
+            border-bottom: none;
+        }
+        .contributor-name {
+            font-weight: 500;
+        }
+        .contributor-value {
+            font-family: monospace;
+        }
+        .contributor-value.positive {
+            color: #e74c3c;
+        }
+        .contributor-value.negative {
+            color: #27ae60;
+        }
+        .indicator-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        .indicator-table th {
+            text-align: left;
+            padding: 10px 5px;
+            border-bottom: 2px solid #ddd;
+            font-weight: 600;
+            color: #666;
+        }
+        .indicator-table td {
+            padding: 10px 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .indicator-table tr:last-child td {
+            border-bottom: none;
+        }
+        .indicator-name {
+            font-weight: 600;
+        }
+        .indicator-description {
+            color: #666;
+            font-size: 12px;
+            margin-top: 2px;
+        }
+        .status-available {
+            color: #27ae60;
+        }
+        .status-unavailable {
+            color: #e74c3c;
+        }
+        .missing-section {
+            background-color: #fff3cd;
+            padding: 15px 30px;
+        }
+        .missing-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .missing-list li {
+            margin-bottom: 5px;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="header">
+            <h1>ESI-Lite</h1>
+            <p>Eurodollar Stress Index Lite - Daily Summary</p>
+            <p>2026-03-18</p>
+        </div>
+        
+        
+        <div class="score-section">
+            <div class="score-value" style="color: #2ecc71;">38.7</div>
+            <div class="score-label">Current Stress Score (0-100)</div>
+            <span class="regime-badge" style="background-color: #27ae60;">
+                Easy
+            </span>
+        </div>
+        
+        
+        <div class="section">
+            <div class="section-title">Recent Changes</div>
+            <div class="changes-grid">
+                <div class="change-item">
+                    <div class="change-value up">+2.55</div>
+                    <div class="change-label">5-Day Change</div>
+                </div>
+                <div class="change-item">
+                    <div class="change-value up">+2.53</div>
+                    <div class="change-label">20-Day Change</div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="section">
+            <div class="section-title">Top Stress Contributors</div>
+            <ul class="contributor-list">
+                
+                <li class="contributor-item">
+                    <span class="contributor-name">SOFR 5D Change</span>
+                    <span class="contributor-value positive">+0.038</span>
+                </li>
+            
+                <li class="contributor-item">
+                    <span class="contributor-name">30D Avg SOFR - SOFR</span>
+                    <span class="contributor-value negative">-0.020</span>
+                </li>
+            
+                <li class="contributor-item">
+                    <span class="contributor-name">SOFR Volume</span>
+                    <span class="contributor-value negative">-0.149</span>
+                </li>
+            
+            </ul>
+        </div>
+        
+        
+        <div class="section">
+            <div class="section-title">Indicator Status</div>
+            <table class="indicator-table">
+                <thead>
+                    <tr>
+                        <th>Indicator</th>
+                        <th>Value</th>
+                        <th>Z-Score</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                <tr>
+                    <td>
+                        <div class="indicator-name">SOFR</div>
+                        <div class="indicator-description">Secured Overnight Financing Rate</div>
+                    </td>
+                    <td>3.6500</td>
+                    <td>-1.61</td>
+                    <td class="status-available">Available</td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <div class="indicator-name">OBFR</div>
+                        <div class="indicator-description">Overnight Bank Funding Rate</div>
+                    </td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td class="status-unavailable">Unavailable</td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <div class="indicator-name">SOFR-OBFR Spread</div>
+                        <div class="indicator-description">Spread between SOFR and OBFR</div>
+                    </td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td class="status-unavailable">Unavailable</td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <div class="indicator-name">SOFR 20D Volatility</div>
+                        <div class="indicator-description">20-day rolling volatility of SOFR</div>
+                    </td>
+                    <td>0.0243</td>
+                    <td>-0.80</td>
+                    <td class="status-available">Available</td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <div class="indicator-name">SOFR 5D Change</div>
+                        <div class="indicator-description">5-day change in SOFR</div>
+                    </td>
+                    <td>0.0100</td>
+                    <td>0.26</td>
+                    <td class="status-available">Available</td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <div class="indicator-name">OBFR 5D Change</div>
+                        <div class="indicator-description">5-day change in OBFR</div>
+                    </td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td class="status-unavailable">Unavailable</td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <div class="indicator-name">SOFR Volume</div>
+                        <div class="indicator-description">SOFR trading volume</div>
+                    </td>
+                    <td>-3146.0000</td>
+                    <td>-0.80</td>
+                    <td class="status-available">Available</td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <div class="indicator-name">30-Day Average SOFR</div>
+                        <div class="indicator-description">30-day average SOFR</div>
+                    </td>
+                    <td>3.6729</td>
+                    <td>-1.76</td>
+                    <td class="status-available">Available</td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <div class="indicator-name">180-Day Average SOFR</div>
+                        <div class="indicator-description">180-day average SOFR</div>
+                    </td>
+                    <td>3.9021</td>
+                    <td>-2.59</td>
+                    <td class="status-available">Available</td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <div class="indicator-name">30D Avg SOFR - SOFR</div>
+                        <div class="indicator-description">Spread between 30-day average SOFR and current SOFR</div>
+                    </td>
+                    <td>0.0233</td>
+                    <td>-0.13</td>
+                    <td class="status-available">Available</td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <div class="indicator-name">BIS USD Credit YoY</div>
+                        <div class="indicator-description">US dollar credit to non-bank borrowers outside the US, YoY</div>
+                    </td>
+                    <td>-7.2955</td>
+                    <td>-1.76</td>
+                    <td class="status-available">Available</td>
+                </tr>
+            
+                </tbody>
+            </table>
+        </div>
+        
+        
+        <div class="missing-section">
+            <div class="section-title">Missing Indicators</div>
+            <p>The following indicators are currently unavailable:</p>
+            <ul class="missing-list">
+                <li>obfr</li><li>sofr_obfr_spread</li><li>obfr_change_5d</li>
+            </ul>
+        </div>
+        
+        
+        <div class="footer">
+            <p>Generated: 2026-03-18T22:10:04.976989</p>
+            <p>ESI-Lite | Eurodollar Stress Index Lite</p>
+            <p>Free data sources: FRED, NY Fed, BIS</p>
+        </div>
+        
+    </div>
+</body>
+</html>

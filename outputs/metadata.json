@@ -1,0 +1,80 @@
+{
+  "generated_at": "2026-03-18T22:10:04.976989",
+  "latest_date_in_data": "2026-03-17",
+  "source_status": {
+    "FRED": {
+      "available": true,
+      "api_key_present": false,
+      "mode": "public_csv",
+      "error": null,
+      "last_checked": "2026-03-18T22:09:58.768483"
+    },
+    "NYFed": {
+      "available": true,
+      "error": null,
+      "last_checked": "2026-03-18T22:10:01.591732"
+    },
+    "BIS": {
+      "available": true,
+      "mode": "auto",
+      "error": null,
+      "last_checked": "2026-03-18T22:10:04.820993"
+    },
+    "Premium": {
+      "enabled": false,
+      "sources": {
+        "bloomberg": {
+          "source": "Bloomberg",
+          "available": false,
+          "enabled": false,
+          "error": "Not implemented in free version"
+        },
+        "refinitiv": {
+          "source": "Refinitiv",
+          "available": false,
+          "enabled": false,
+          "error": "Not implemented in free version"
+        },
+        "wind": {
+          "source": "Wind/iFinD",
+          "available": false,
+          "enabled": false,
+          "error": "Not implemented in free version"
+        },
+        "csv": {
+          "source": "Premium CSV",
+          "available": false,
+          "enabled": false,
+          "data_dir": "data/premium",
+          "error": "Source disabled"
+        }
+      },
+      "any_available": false,
+      "last_checked": "2026-03-18T22:10:04.821051"
+    }
+  },
+  "missing_indicators": [
+    "obfr",
+    "sofr_obfr_spread",
+    "obfr_change_5d"
+  ],
+  "available_indicators": [
+    "sofr",
+    "sofr_volatility_20d",
+    "sofr_change_5d",
+    "sofrvol",
+    "sofr30",
+    "sofr180",
+    "sofr30_minus_sofr",
+    "bis_usd_credit_yoy"
+  ],
+  "config_summary": {
+    "version": "1.0.1",
+    "name": "ESI-Lite"
+  },
+  "mail_status": {
+    "configured": false,
+    "success": false,
+    "error": null
+  }
+}

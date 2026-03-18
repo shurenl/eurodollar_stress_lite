@@ -1,0 +1,90 @@
+name: ESI-Lite Daily Update
+
+"on":
+  schedule:
+    - cron: '0 23 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: esi-lite-daily-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: requirements.txt
+
+      - name: Show runtime info
+        run: |
+          python --version
+          date -u
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run daily pipeline
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+        run: python main.py
+
+      - name: Check for output changes
+        id: changes
+        run: |
+          git add dashboard_data outputs
+          if git diff --cached --quiet; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit and push updates
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Daily ESI-Lite update: $(date -u +'%Y-%m-%d')"
+          git push
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: esi-lite-outputs
+          path: |
+            dashboard_data/
+            outputs/
+          retention-days: 7
+          if-no-files-found: warn
+
+      - name: Workflow summary
+        if: always()
+        run: |
+          echo "## ESI-Lite Daily Update" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Cron is UTC and currently set to 23:00 UTC every day." >> "$GITHUB_STEP_SUMMARY"
+          echo "- Pipeline entrypoint: \`python main.py\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Output commit performed: ${{ steps.changes.outputs.has_changes }}" >> "$GITHUB_STEP_SUMMARY"
