@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-18T22:10:04.976989",
+  "generated_at": "2026-03-18T15:13:41.717170",
   "latest_date_in_data": "2026-03-17",
   "source_status": {
     "FRED": {
@@ -7,18 +7,18 @@
       "api_key_present": false,
       "mode": "public_csv",
       "error": null,
-      "last_checked": "2026-03-18T22:09:58.768483"
+      "last_checked": "2026-03-18T15:13:39.930925"
     },
     "NYFed": {
       "available": true,
       "error": null,
-      "last_checked": "2026-03-18T22:10:01.591732"
+      "last_checked": "2026-03-18T15:13:40.316858"
     },
     "BIS": {
       "available": true,
       "mode": "auto",
       "error": null,
-      "last_checked": "2026-03-18T22:10:04.820993"
+      "last_checked": "2026-03-18T15:13:41.422230"
     },
     "Premium": {
       "enabled": false,
@@ -50,18 +50,17 @@
         }
       },
       "any_available": false,
-      "last_checked": "2026-03-18T22:10:04.821051"
+      "last_checked": "2026-03-18T15:13:41.422332"
     }
   },
-  "missing_indicators": [
-    "obfr",
-    "sofr_obfr_spread",
-    "obfr_change_5d"
-  ],
+  "missing_indicators": [],
   "available_indicators": [
     "sofr",
+    "obfr",
+    "sofr_obfr_spread",
     "sofr_volatility_20d",
     "sofr_change_5d",
+    "obfr_change_5d",
     "sofrvol",
     "sofr30",
     "sofr180",
@@ -73,8 +72,10 @@
     "name": "ESI-Lite"
   },
   "mail_status": {
-    "configured": false,
-    "success": false,
-    "error": null
+    "success": true,
+    "error": null,
+    "configured": true,
+    "recipient": "shuren9712@gmail.com",
+    "timestamp": "2026-03-18T15:13:55.877022"
   }
 }
