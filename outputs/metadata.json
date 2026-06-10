@@ -1,24 +1,24 @@
 {
-  "generated_at": "2026-06-09T00:04:41.354586",
-  "latest_date_in_data": "2026-06-05",
+  "generated_at": "2026-06-10T00:11:31.361537",
+  "latest_date_in_data": "2026-06-08",
   "source_status": {
     "FRED": {
       "available": false,
       "api_key_present": false,
       "mode": "public_csv",
       "error": "Test fetch returned no data",
-      "last_checked": "2026-06-09T00:04:39.672908"
+      "last_checked": "2026-06-10T00:11:29.564981"
     },
     "NYFed": {
       "available": true,
       "error": null,
-      "last_checked": "2026-06-09T00:04:39.988715"
+      "last_checked": "2026-06-10T00:11:30.011244"
     },
     "BIS": {
       "available": true,
       "mode": "auto",
       "error": null,
-      "last_checked": "2026-06-09T00:04:41.092704"
+      "last_checked": "2026-06-10T00:11:31.079926"
     },
     "Premium": {
       "enabled": false,
@@ -50,22 +50,22 @@
         }
       },
       "any_available": false,
-      "last_checked": "2026-06-09T00:04:41.092845"
+      "last_checked": "2026-06-10T00:11:31.080021"
     }
   },
   "missing_indicators": [
-    "sofrvol",
-    "sofr30",
-    "sofr180",
-    "sofr30_minus_sofr"
+    "obfr",
+    "sofr_obfr_spread",
+    "obfr_change_5d"
   ],
   "available_indicators": [
     "sofr",
-    "obfr",
-    "sofr_obfr_spread",
     "sofr_volatility_20d",
     "sofr_change_5d",
-    "obfr_change_5d",
+    "sofrvol",
+    "sofr30",
+    "sofr180",
+    "sofr30_minus_sofr",
     "bis_usd_credit_yoy"
   ],
   "config_summary": {
@@ -77,6 +77,6 @@
     "error": null,
     "configured": true,
     "recipient": "shuren9712@gmail.com",
-    "timestamp": "2026-06-09T00:04:52.874277"
+    "timestamp": "2026-06-10T00:11:45.413016"
   }
 }
