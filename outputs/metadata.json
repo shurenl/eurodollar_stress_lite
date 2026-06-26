@@ -1,24 +1,24 @@
 {
-  "generated_at": "2026-06-26T00:04:07.491737",
-  "latest_date_in_data": "2026-06-24",
+  "generated_at": "2026-06-26T23:54:05.089470",
+  "latest_date_in_data": "2026-06-25",
   "source_status": {
     "FRED": {
       "available": true,
       "api_key_present": false,
       "mode": "public_csv",
       "error": null,
-      "last_checked": "2026-06-26T00:04:05.570092"
+      "last_checked": "2026-06-26T23:54:02.103132"
     },
     "NYFed": {
       "available": true,
       "error": null,
-      "last_checked": "2026-06-26T00:04:05.851674"
+      "last_checked": "2026-06-26T23:54:02.658862"
     },
     "BIS": {
       "available": true,
       "mode": "auto",
       "error": null,
-      "last_checked": "2026-06-26T00:04:07.149025"
+      "last_checked": "2026-06-26T23:54:04.736755"
     },
     "Premium": {
       "enabled": false,
@@ -50,7 +50,7 @@
         }
       },
       "any_available": false,
-      "last_checked": "2026-06-26T00:04:07.149158"
+      "last_checked": "2026-06-26T23:54:04.737059"
     }
   },
   "missing_indicators": [],
@@ -76,6 +76,6 @@
     "error": null,
     "configured": true,
     "recipient": "shuren9712@gmail.com",
-    "timestamp": "2026-06-26T00:04:24.156667"
+    "timestamp": "2026-06-26T23:54:22.665791"
   }
 }
