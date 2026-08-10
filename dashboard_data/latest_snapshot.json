@@ -1,16 +1,16 @@
 {
-  "current_score": 45.028923537527234,
+  "current_score": 43.906799645848565,
   "current_regime": {
-    "id": "neutral",
-    "label": "Neutral",
-    "color": "#f39c12",
-    "description": "Funding conditions are broadly balanced.",
-    "min": 45,
-    "max": 60
+    "id": "easy",
+    "label": "Easy",
+    "color": "#27ae60",
+    "description": "Funding conditions remain supportive.",
+    "min": 30,
+    "max": 45
   },
-  "latest_date": "2026-08-06",
-  "change_5d": -0.5953911477048024,
-  "change_20d": 7.025067584909451,
+  "latest_date": "2026-08-07",
+  "change_5d": -0.3398773631551961,
+  "change_20d": 3.7738357560867115,
   "available_indicators": [
     "sofr",
     "obfr",
@@ -29,7 +29,7 @@
     {
       "id": "sofrvol",
       "name": "SOFR Volume",
-      "contribution": 0.032636834228480016,
+      "contribution": 0.08786688284697283,
       "weight": 0.10869565217391305
     },
     {
@@ -41,27 +41,27 @@
     {
       "id": "sofr_change_5d",
       "name": "SOFR 5D Change",
-      "contribution": 0.01374832928891311,
+      "contribution": -0.02569210690788424,
       "weight": 0.08695652173913045
     }
   ],
   "top_relief_contributors": [
     {
-      "id": "obfr",
-      "name": "OBFR",
-      "contribution": -0.10029890122403856,
+      "id": "sofr_obfr_spread",
+      "name": "SOFR-OBFR Spread",
+      "contribution": -0.12612605896613174,
+      "weight": 0.1739130434782609
+    },
+    {
+      "id": "sofr_volatility_20d",
+      "name": "SOFR 20D Volatility",
+      "contribution": -0.11572247540582312,
       "weight": 0.1521739130434783
     },
     {
       "id": "sofr",
       "name": "SOFR",
-      "contribution": -0.09953537248162812,
-      "weight": 0.1521739130434783
-    },
-    {
-      "id": "sofr_volatility_20d",
-      "name": "SOFR 20D Volatility",
-      "contribution": -0.09287970350353576,
+      "contribution": -0.11469995902453434,
       "weight": 0.1521739130434783
     }
   ],
@@ -71,18 +71,18 @@
       "api_key_present": false,
       "mode": "public_csv",
       "error": null,
-      "last_checked": "2026-08-09T23:19:54.852809"
+      "last_checked": "2026-08-10T23:24:36.665465"
     },
     "NYFed": {
       "available": true,
       "error": null,
-      "last_checked": "2026-08-09T23:19:55.199369"
+      "last_checked": "2026-08-10T23:24:37.087992"
     },
     "BIS": {
       "available": true,
       "mode": "auto",
       "error": null,
-      "last_checked": "2026-08-09T23:19:56.318222"
+      "last_checked": "2026-08-10T23:24:38.277542"
     },
     "Premium": {
       "enabled": false,
@@ -114,44 +114,44 @@
         }
       },
       "any_available": false,
-      "last_checked": "2026-08-09T23:19:56.318362"
+      "last_checked": "2026-08-10T23:24:38.277865"
     }
   },
   "indicator_values": {
-    "sofr": 3.65,
+    "sofr": 3.62,
     "obfr": 3.63,
-    "sofr_obfr_spread": 0.020000000000000018,
-    "sofr_volatility_20d": 0.030192365713485617,
-    "sofr_change_5d": 0.0,
+    "sofr_obfr_spread": -0.009999999999999787,
+    "sofr_volatility_20d": 0.024121403468114103,
+    "sofr_change_5d": -0.040000000000000036,
     "obfr_change_5d": 0.0,
-    "sofrvol": -3055.0,
-    "sofr30": 3.62347,
-    "sofr180": 3.663,
-    "sofr30_minus_sofr": -0.02754000000000012,
+    "sofrvol": -2977.0,
+    "sofr30": 3.63014,
+    "sofr180": 3.66265,
+    "sofr30_minus_sofr": 0.003470000000000084,
     "bis_usd_credit_yoy": -7.371302672028257
   },
   "zscores": {
-    "sofr": -0.6540895905935561,
-    "obfr": -0.6591070651865389,
-    "sofr_obfr_spread": -0.23159429147651467,
-    "sofr_volatility_20d": -0.6103523373089491,
-    "sofr_change_5d": 0.15810578682250076,
+    "sofr": -0.7537425878755112,
+    "obfr": -0.6534302903737366,
+    "sofr_obfr_spread": -0.7252248390552575,
+    "sofr_volatility_20d": -0.760461981238266,
+    "sofr_change_5d": -0.2954592294406687,
     "obfr_change_5d": 0.2353970984549797,
-    "sofrvol": 0.30025887490201614,
-    "sofr30": -0.84355833086646,
-    "sofr180": -1.3717866345203462,
-    "sofr30_minus_sofr": -0.7505857792752628,
+    "sofrvol": 0.80837532219215,
+    "sofr30": -0.8140278560663642,
+    "sofr180": -1.3617023789478562,
+    "sofr30_minus_sofr": -0.3780499443902684,
     "bis_usd_credit_yoy": 0.05334232431816835
   },
   "contributions": {
-    "sofr": -0.09953537248162812,
-    "obfr": -0.10029890122403856,
-    "sofr_obfr_spread": -0.040277268082872124,
-    "sofr_volatility_20d": -0.09287970350353576,
-    "sofr_change_5d": 0.01374832928891311,
+    "sofr": -0.11469995902453434,
+    "obfr": -0.09943504418730777,
+    "sofr_obfr_spread": -0.12612605896613174,
+    "sofr_volatility_20d": -0.11572247540582312,
+    "sofr_change_5d": -0.02569210690788424,
     "obfr_change_5d": 0.02046931290912867,
-    "sofrvol": 0.032636834228480016,
-    "sofr30_minus_sofr": -0.06526832863263156,
+    "sofrvol": 0.08786688284697283,
+    "sofr30_minus_sofr": -0.03287390820784943,
     "bis_usd_credit_yoy": null
   }
 }
