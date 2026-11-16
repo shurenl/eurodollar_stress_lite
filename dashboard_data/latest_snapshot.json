@@ -71,18 +71,18 @@
       "api_key_present": false,
       "mode": "public_csv",
       "error": null,
-      "last_checked": "2026-11-15T02:16:07.308612"
+      "last_checked": "2026-11-16T02:28:34.539724"
     },
     "NYFed": {
       "available": true,
       "error": null,
-      "last_checked": "2026-11-15T02:16:07.615818"
+      "last_checked": "2026-11-16T02:28:34.964961"
     },
     "BIS": {
       "available": true,
       "mode": "auto",
       "error": null,
-      "last_checked": "2026-11-15T02:16:08.875530"
+      "last_checked": "2026-11-16T02:28:35.813345"
     },
     "Premium": {
       "enabled": false,
@@ -114,7 +114,7 @@
         }
       },
       "any_available": false,
-      "last_checked": "2026-11-15T02:16:08.875606"
+      "last_checked": "2026-11-16T02:28:35.813405"
     }
   },
   "indicator_values": {
